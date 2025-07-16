@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore

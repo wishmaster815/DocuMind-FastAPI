@@ -3,15 +3,10 @@ langchain
 python-dotenv
 langchain_community
 langchain_core
-bs4
 fastapi
-langchain_chroma
-groq
 langchain-groq
 pypdf
-sentence_transformers
 langchain_huggingface
-redis
 uvicorn
 python-multipart
 pinecone

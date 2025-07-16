@@ -3,9 +3,6 @@ from langchain.chains.retrieval import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.history_aware_retriever import create_history_aware_retriever
 
-
-
-
 def build_conversational_chain(llm, retriever):
     contextualize_q_prompt = ChatPromptTemplate.from_messages([
             ("system", "Given a chat history and the latest user question which might reference context in the chat history, "

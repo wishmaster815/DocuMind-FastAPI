@@ -6,7 +6,6 @@ import os
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from langchain_core.runnables.history import RunnableWithMessageHistory
-from langchain_community.chat_message_histories import ChatMessageHistory
 
 load_dotenv()
 groq_api_key = os.getenv("GROQ_API_KEY")
