@@ -11,3 +11,4 @@ uvicorn
 python-multipart
 pinecone
 langchain-pinecone
+sentence-transformers
