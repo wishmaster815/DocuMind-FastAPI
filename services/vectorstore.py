@@ -47,7 +47,7 @@ def generate_vectors(session_id: str,pdf_paths: list[str]):
             os.remove(path)
             print(f"[CLEANUP] Deleted file: {path}")
 
-    splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=300)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=100)
     chunks = splitter.split_documents(documents)
 
     index_name = pc_index
