@@ -5,9 +5,10 @@ from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.embeddings.jina import JinaEmbeddings
 
 load_dotenv()
-
+jina_key = os.getenv("JINA_KEY")
 hf_key = os.getenv("HF_KEY")
 pc_key = os.getenv("PINECONE_API_KEY")
 pc_env = os.getenv("PINECONE_ENVIRONMENT")
@@ -18,7 +19,7 @@ _embeddings = None
 def get_embeddings():
     global _embeddings
     if _embeddings is None:
-        _embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        _embeddings = JinaEmbeddings(jina_api_key=jina_key, dimension=768, model_name="jina-embeddings-v2-base-en")
     return _embeddings
 
 pc = Pinecone(api_key=pc_key, environment=pc_env)
@@ -27,7 +28,7 @@ embeddings = get_embeddings()
 if not pc.has_index(pc_index):
         pc.create_index(
         name=pc_index,
-        dimension=384,  # for MiniLM
+        dimension=768,
         metric="cosine",
         spec=ServerlessSpec(cloud="aws", region="us-east-1")
     )
