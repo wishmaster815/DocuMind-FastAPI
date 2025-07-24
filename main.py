@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["http://localhost:3000", "https://documind-ai-815.vercel.app/"]
+origins = ["http://localhost:3000", "https://documind-ai-815.vercel.app"]
     
 app.add_middleware(
     CORSMiddleware,
