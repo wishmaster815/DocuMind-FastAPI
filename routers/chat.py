@@ -14,10 +14,15 @@ groq_api_key = os.getenv("GROQ_API_KEY")
 router = APIRouter(prefix='/chat',tags=["chat"])
 
 @router.post("/")
-async def chat(session_id:str =Form(...), input:str = Form(...)):
+async def chat(session_id: str = Form(...), input: str = Form(...)):
     retriever = get_retriever(session_id)
-    llm = ChatGroq(groq_api_key=groq_api_key,model_name="Gemma2-9b-It")
-    rag_chain = build_conversational_chain(llm,retriever)
+    llm = ChatGroq(groq_api_key=groq_api_key, model_name="Gemma2-9b-It")
+    rag_chain = build_conversational_chain(llm, retriever)
+
+    # DEBUG: Check retriever output before running the chain
+    docs = retriever.get_relevant_documents(input)
+    if not docs:
+        return {"answer": "No documents found for this session. Please upload a PDF first."}
 
     conversation_rag_chain = RunnableWithMessageHistory(
         rag_chain,
